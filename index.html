@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Tareas</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #2b2b2b; /* Fondo oscuro */
+            color: #ffffff; /* Texto blanco */
+        }
+        h1 {
+            color: orange; /* Color del título */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra del título */
+            margin-bottom: 20px; /* Espacio debajo del título */
+        }
+        #taskForm {
+            margin-bottom: 20px;
+            display: flex; /* Flexbox para alinear el input y el botón */
+        }
+        #taskInput {
+            padding: 10px;
+            border: 2px solid orange; /* Borde naranja */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #444; /* Fondo del input oscuro */
+            color: white; /* Texto blanco en el input */
+            width: 250px; /* Ancho del input */
+        }
+        button {
+            padding: 10px 15px;
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer;
+            background-color: orange; /* Fondo del botón */
+            color: white; /* Texto blanco */
+            margin-left: 10px; /* Espacio a la izquierda del botón */
+            transition: background-color 0.3s; /* Efecto de transición */
+        }
+        button:hover {
+            background-color: #e68a00; /* Color de fondo al pasar el ratón */
+        }
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+            width: 300px; /* Ancho de la lista */
+        }
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333; /* Fondo de cada tarea */
+            padding: 10px;
+            border-radius: 5px; /* Bordes redondeados */
+            margin-bottom: 10px;
+        }
+        .taskItem span {
+            flex-grow: 1; /* Ocupa el espacio disponible */
+            margin-left: 10px; /* Espacio a la izquierda del texto de la tarea */
+        }
+        .taskItem button {
+            margin-left: 5px; /* Espacio a la izquierda de los botones */
+        }
+        .completed {
+            text-decoration: line-through; /* Tachar texto de tareas completadas */
+            color: gray; /* Color del texto tachado */
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="Nueva tarea" required>
+        <button type="submit">Agregar</button>
+    </form>
+    <ul id="taskList"></ul>
+
+    <script>
+        const taskForm = document.getElementById('taskForm');
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addTask(taskInput.value);
+            taskInput.value = '';
+        });
+
+        function addTask(task) {
+            const taskItem = document.createElement('li');
+            taskItem.className = 'taskItem';
+            taskItem.innerHTML = `
+                <input type="checkbox" onclick="toggleComplete(this)">
+                <span>${task}</span>
+                <div>
+                    <button onclick="editTask(this)">Editar</button>
+                    <button onclick="deleteTask(this)">Eliminar</button>
+                </div>
+            `;
+            taskList.appendChild(taskItem);
+        }
+
+        function toggleComplete(checkbox) {
+            const taskItem = checkbox.parentElement;
+            taskItem.querySelector('span').classList.toggle('completed');
+        }
+
+        function editTask(button) {
+            const taskItem = button.parentElement.parentElement;
+            const taskText = taskItem.querySelector('span').innerText;
+            const newTask = prompt('Editar tarea:', taskText);
+            if (newTask) {
+                taskItem.querySelector('span').innerText = newTask;
+            }
+        }
+
+        function deleteTask(button) {
+            const taskItem = button.parentElement.parentElement;
+            taskList.removeChild(taskItem);
+        }
+    </script>
+</body>
+</html>
