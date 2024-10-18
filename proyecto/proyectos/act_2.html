@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Carga</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #141414; /* Fondo oscuro al estilo de Netflix */
+            color: white; /* Texto blanco para mejor contraste */
+        }
+        #loading {
+            position: absolute;
+            text-align: center;
+            font-size: 24px;
+            display: none;
+        }
+        #welcome {
+            display: none;
+            font-size: 32px;
+            color: #e50914; /* Rojo característico de Netflix */
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7); /* Sombra para dar profundidad */
+        }
+        p {
+            margin: 0; /* Eliminar margen para que el texto se vea más limpio */
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <p>Cargando...</p>
+        <p>No me gusta la programación</p>
+    </div>
+    <div id="welcome">
+        <p>Bienvenido</p>
+    </div>
+
+    <script>
+        document.getElementById('loading').style.display = 'block';
+
+        // Simular tiempo de carga
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('welcome').style.display = 'block';
+        }, 3000); // Espera 3 segundos
+    </script>
+</body>
+</html>

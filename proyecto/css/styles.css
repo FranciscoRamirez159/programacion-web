@@ -1,0 +1,158 @@
+/* Barra de Navegación */
+.navbar {
+    display: flex; /* Utiliza flexbox para alinear los elementos hijos */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    background-color: #be1a1a; /* Color de fondo de la barra de navegación */
+    padding: 10px 20px; /* Espaciado interno de la barra de navegación */
+    position: fixed; /* Fija la barra de navegación en la parte superior */
+    width: 80%; /* Ancho de la barra de navegación */
+    top: 0; /* Posición en la parte superior de la página */
+    z-index: 100; /* Asegura que la barra de navegación esté por encima de otros elementos */
+    left: 10%; /* Centra la barra de navegación horizontalmente */
+}
+
+/* Enlaces de Navegación */
+.nav-links {
+    display: flex; /* Utiliza flexbox para alinear los enlaces */
+    list-style: none; /* Elimina los puntos de la lista */
+}
+
+.nav-links li {
+    margin: 0 1px; /* Espaciado entre los elementos de la lista */
+}
+
+.nav-links a {
+    color: white; /* Color del texto de los enlaces */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    margin-left: 5px; /* Espaciado a la izquierda de los enlaces */
+}
+
+/* Menú hamburguesa */
+.menu-icon {
+    display: none; /* Oculta el icono del menú en pantallas grandes */
+    font-size: 40px; /* Tamaño de la fuente del icono del menú */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Oculta los enlaces de navegación en pantallas pequeñas */
+        flex-direction: column; /* Cambia la dirección de los enlaces a columna */
+        position: absolute; /* Posiciona los enlaces de forma absoluta */
+        top: 60px; /* Posición desde la parte superior */
+        right: 0; /* Posición desde la derecha */
+        background-color: #eee8e8; /* Color de fondo de los enlaces en pantallas pequeñas */
+        width: 100%; /* Ancho de los enlaces en pantallas pequeñas */
+        z-index: 101; /* Asegura que los enlaces estén por encima de otros elementos */
+    }
+
+    .nav-links.show {
+        display: flex; /* Muestra los enlaces cuando se activa el menú */
+    }
+
+    .menu-icon {
+        display: block; /* Muestra el icono del menú en pantallas pequeñas */
+    }
+}
+
+/* Efecto de serpiente */
+.snake {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    width: 10px; /* Ancho del elemento */
+    height: 10px; /* Altura del elemento */
+    background-color: yellow; /* Color de fondo del elemento */
+    border-radius: 50%; /* Hace que el elemento sea redondo */
+    pointer-events: none; /* Evita que el elemento interfiera con los eventos del ratón */
+    transition: transform 0.1s ease; /* Transición suave para el movimiento del elemento */
+}
+
+/* Galería de Proyectos */
+.gallery {
+    display: flex; /* Utiliza flexbox para alinear los proyectos */
+    flex-wrap: wrap; /* Permite que los proyectos se envuelvan en varias líneas */
+    gap: 15px; /* Espaciado entre los proyectos */
+    padding: 50px; /* Espaciado interno de la galería */
+    margin-top: 60px; /* Margen superior de la galería */
+}
+
+.project {
+    position: relative; /* Posiciona los elementos hijos de forma relativa */
+    width: 200px; /* Ancho de cada proyecto */
+    height: 200px; /* Altura de cada proyecto */
+    overflow: hidden; /* Oculta el contenido que se desborda */
+}
+
+/* Ajuste de la imagen para hacerla responsiva */
+.project img {
+    width: 100%; /* Ancho de la imagen al 100% del contenedor */
+    height: 100%; /* Altura de la imagen al 100% del contenedor */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    transition: transform 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+.project:hover img {
+    transform: scale(1.1); /* Escala la imagen al pasar el ratón por encima */
+}
+
+.overlay {
+    position: absolute; /* Posiciona el overlay de forma absoluta */
+    bottom: 0; /* Posición en la parte inferior del contenedor */
+    background: rgba(190, 6, 6, 0.7); /* Color de fondo del overlay con transparencia */
+    color: white; /* Color del texto del overlay */
+    width: 100%; /* Ancho del overlay al 100% del contenedor */
+    text-align: center; /* Centra el texto del overlay */
+    padding: 10px; /* Espaciado interno del overlay */
+}
+
+/* Modal */
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed; /* Fija el modal en la pantalla */
+    z-index: 1; /* Asegura que el modal esté por encima de otros elementos */
+    left: 0; /* Posición desde la izquierda */
+    top: 0; /* Posición desde la parte superior */
+    width: 100%; /* Ancho del modal al 100% de la pantalla */
+    height: 100%; /* Altura del modal al 100% de la pantalla */
+    background-color: rgba(53, 40, 40, 0.9); /* Color de fondo del modal con transparencia */
+}
+
+.modal-content {
+    background-color: #333; /* Color de fondo del contenido del modal */
+    color: white; /* Color del texto del contenido del modal */
+    margin: 10% auto; /* Margen superior e inferior del contenido del modal */
+    padding: 20px; /* Espaciado interno del contenido del modal */
+    width: 80%; /* Ancho del contenido del modal */
+    max-width: 600px; /* Ancho máximo del contenido del modal */
+}
+
+.close {
+    color: red; /* Color del botón de cerrar */
+    float: right; /* Flota el botón de cerrar a la derecha */
+    font-size: 28px; /* Tamaño de la fuente del botón de cerrar */
+    font-weight: bold; /* Peso de la fuente del botón de cerrar */
+}
+
+.close:hover, .close:focus {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón de cerrar */
+}
+
+/* Contenido general */
+.content {
+    padding: 50px; /* Espaciado interno del contenido */
+    margin-top: 60px; /* Margen superior del contenido */
+    background-color: #eee5e5; /* Color de fondo del contenido */
+    color: white; /* Color del texto del contenido */
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .project {
+        width: 100%; /* Ancho del proyecto al 100% del contenedor */
+        height: auto; /* Altura automática del proyecto */
+    }
+
+    .gallery {
+        padding: 20px; /* Espaciado interno de la galería */
+    }
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de Distancias - Jumes Bida</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            color: white;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffdd00;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+        select {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+        button {
+            background-color: #ffffff;
+            color: #ff6600;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffcc00;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> Convertidor</h1>
+    <label for="valor">Ingrese la cantidad:</label>
+    <input type="number" id="valor" placeholder="Ingrese un número">
+
+    <label for="unidadOrigen">Convertir de:</label>
+    <select id="unidadOrigen">
+        <option value="metros">Metros</option>
+        <option value="kilometros">Kilómetros</option>
+        <option value="millas">Millas</option>
+    </select>
+
+    <label for="unidadDestino">Convertir a:</label>
+    <select id="unidadDestino">
+        <option value="metros">Metros</option>
+        <option value="kilometros">Kilómetros</option>
+        <option value="millas">Millas</option>
+    </select>
+
+    <button onclick="convertir()">Convertir</button>
+
+    <p id="resultado"></p>
+</div>
+
+<script>
+    function convertir() {
+        const valor = parseFloat(document.getElementById('valor').value);
+        const unidadOrigen = document.getElementById('unidadOrigen').value;
+        const unidadDestino = document.getElementById('unidadDestino').value;
+        let resultado = 0;
+
+        // Conversión a metros
+        if (unidadOrigen === 'metros') {
+            resultado = valor;
+        } else if (unidadOrigen === 'kilometros') {
+            resultado = valor * 1000;
+        } else if (unidadOrigen === 'millas') {
+            resultado = valor * 1609.34;
+        }
+
+        // Conversión de metros a la unidad destino
+        if (unidadDestino === 'metros') {
+            // Ya está en metros
+        } else if (unidadDestino === 'kilometros') {
+            resultado = resultado / 1000;
+        } else if (unidadDestino === 'millas') {
+            resultado = resultado / 1609.34;
+        }
+
+        document.getElementById('resultado').innerText = `Resultado: ${resultado.toFixed(2)} ${unidadDestino}`;
+    }
+</script>
+
+</body>
+</html>

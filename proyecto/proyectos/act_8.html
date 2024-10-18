@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #2b2b2b; /* Fondo oscuro */
+            color: #ffffff; /* Texto blanco */
+        }
+        h1 {
+            color: orange; /* Color del título */
+            text-align: center; /* Centrar el título */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra del título */
+        }
+        label {
+            display: block; /* Hacer que cada etiqueta ocupe su propia línea */
+            margin-top: 10px; /* Espacio arriba de cada etiqueta */
+            color: #ffcc00; /* Color de las etiquetas */
+        }
+        input {
+            margin: 5px;
+            padding: 10px; /* Espacio interno en los inputs */
+            border: 2px solid orange; /* Borde naranja */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #444; /* Fondo del input oscuro */
+            color: white; /* Texto blanco en el input */
+            width: 100%; /* Ancho completo del input */
+            box-sizing: border-box; /* Incluir padding y borde en el ancho total */
+        }
+        button {
+            padding: 10px 15px;
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer;
+            background-color: orange; /* Fondo del botón */
+            color: white; /* Texto blanco */
+            margin-top: 10px; /* Espacio arriba del botón */
+            width: 100%; /* Ancho completo del botón */
+            transition: background-color 0.3s; /* Efecto de transición */
+        }
+        button:hover {
+            background-color: #e68a00; /* Color de fondo al pasar el ratón */
+        }
+        h2 {
+            margin-top: 20px; /* Espacio arriba del encabezado de resultados */
+            text-align: center; /* Centrar el encabezado de resultados */
+        }
+        p {
+            text-align: center; /* Centrar los resultados */
+            font-size: 18px; /* Aumentar el tamaño de la fuente de los resultados */
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Básica</h1>
+    <label for="num1">Número 1:</label>
+    <input type="number" id="num1" placeholder="Introduce el primer número">
+    
+    <label for="num2">Número 2:</label>
+    <input type="number" id="num2" placeholder="Introduce el segundo número">
+    
+    <button onclick="calcular()">Calcular</button>
+    
+    <h2>Resultados:</h2>
+    <p>Suma: <span id="suma"></span></p>
+    <p>Resta: <span id="resta"></span></p>
+    <p>Multiplicación: <span id="multiplicacion"></span></p>
+    <p>División: <span id="division"></span></p>
+
+    <script>
+        function calcular() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            document.getElementById('suma').textContent = num1 + num2;
+            document.getElementById('resta').textContent = num1 - num2;
+            document.getElementById('multiplicacion').textContent = num1 * num2;
+            document.getElementById('division').textContent = num2 !== 0 ? (num1 / num2).toFixed(2) : 'Error: División por cero';
+        }
+    </script>
+</body>
+</html>

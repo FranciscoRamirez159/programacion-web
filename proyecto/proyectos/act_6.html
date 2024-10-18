@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrar Tabla de Datos - Halloween</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #222; /* Fondo oscuro */
+            color: #fff; /* Texto blanco */
+        }
+        h1 {
+            color: orange; /* Título en naranja */
+            text-align: center;
+        }
+        #searchInput {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 2px solid orange; /* Borde naranja */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #444; /* Fondo más claro para el campo de búsqueda */
+            color: white; /* Texto blanco */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid orange; /* Bordes naranja */
+            text-align: left;
+        }
+        th {
+            background-color: #666; /* Fondo gris oscuro para el encabezado */
+            color: orange; /* Texto naranja */
+        }
+        tr:nth-child(even) {
+            background-color: #333; /* Fondo más oscuro para filas pares */
+        }
+        tr:hover {
+            background-color: #555; /* Fondo más claro al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Filtrar Tabla de Datos - Halloween</h1>
+    <input type="text" id="searchInput" placeholder="Buscar...">
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alicia</td>
+                <td>28</td>
+                <td>Madrid</td>
+            </tr>
+            <tr>
+                <td>José</td>
+                <td>35</td>
+                <td>Barcelona</td>
+            </tr>
+            <tr>
+                <td>María</td>
+                <td>22</td>
+                <td>Valencia</td>
+            </tr>
+            <tr>
+                <td>Antonio</td>
+                <td>40</td>
+                <td>Sevilla</td>
+            </tr>
+            <tr>
+                <td>Carmen</td>
+                <td>30</td>
+                <td>Bilbao</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Función para filtrar la tabla de datos
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#dataTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                const rowContainsFilterText = Array.from(cells).some(cell => {
+                    return cell.textContent.toLowerCase().includes(filter);
+                });
+                
+                // Muestra u oculta la fila según el texto ingresado
+                row.style.display = rowContainsFilterText ? '' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

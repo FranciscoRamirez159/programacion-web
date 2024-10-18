@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palabras - Degradado Verde a Azul</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to bottom right, #4caf50, #2196f3); /* Degradado verde a azul */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white; /* Color del texto en blanco para contraste */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em; /* Tamaño de fuente más grande */
+            color: #2196f3; /* Color azul para el título */
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #4caf50; /* Borde verde */
+            font-size: 1em; /* Tamaño de fuente del textarea */
+            background-color: #e8f5e9; /* Fondo suave para el textarea */
+            color: #333; /* Color del texto del textarea */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50; /* Color del botón verde */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold; /* Negrita en el botón */
+        }
+        button:hover {
+            background-color: #388e3c; /* Color más oscuro al pasar el mouse */
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result {
+            margin: 10px 0;
+            font-size: 1.2em; /* Tamaño de fuente de los resultados */
+            color: #333; /* Color del texto de los resultados */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contador de Palabras</h1>
+    <textarea id="texto" placeholder="Escribe tu texto aquí..."></textarea>
+    <button onclick="contar()">Contar</button>
+
+    <div class="results">
+        <p class="result" id="palabras">Palabras: 0</p>
+        <p class="result" id="letras">Letras: 0</p>
+        <p class="result" id="caracteresDistintos">Caracteres Distintos: 0</p>
+    </div>
+</div>
+
+<script>
+    function contar() {
+        const texto = document.getElementById('texto').value;
+
+        // Contar palabras
+        const palabras = texto.trim().split(/\s+/).filter(palabra => palabra !== '').length;
+
+        // Contar letras
+        const letras = texto.replace(/[^a-zA-Z]/g, '').length;
+
+        // Contar caracteres distintos (sin espacios ni signos de puntuación)
+        const caracteres = new Set(texto.replace(/\s/g, '').split(''));
+
+        document.getElementById('palabras').innerText = `Palabras: ${palabras}`;
+        document.getElementById('letras').innerText = `Letras: ${letras}`;
+        document.getElementById('caracteresDistintos').innerText = `Caracteres Distintos: ${caracteres.size}`;
+    }
+</script>
+
+</body>
+</html>

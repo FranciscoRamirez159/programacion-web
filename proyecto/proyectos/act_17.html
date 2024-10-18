@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida Halloween</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #222; /* Fondo oscuro */
+            color: #ffcc00; /* Texto amarillo */
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mensaje"> !!!!!!!!Hola!!!!!!!!!!!!!! </h1>
+    <script>
+        let nombre = prompt("¿Cómo te llamas?");
+        document.getElementById("mensaje").innerHTML = "Bienvenido " + nombre + ", ¡Feliz Halloween!";
+    </script>
+</body>
+</html>

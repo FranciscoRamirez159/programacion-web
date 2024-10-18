@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Portafolio de Evidencias Unidad III</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modal_act1.css"> 
+</head>
+
+<body>
+    
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">Proyecto de Evidencias Unidad III JFRR</div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            ☰
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="sobremi.html">Sobre mí</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección de Galería -->
+    <section class="gallery"></section> <!-- Galería vacía, será llenada dinámicamente -->
+
+    <!-- Modal único para todos los proyectos -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h2 id="modal-title">Proyecto</h2>
+            <iframe id="modal-iframe" width="100%" height="500px" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        // Array con los nombres de los proyectos
+        const projectNames = [
+            "Verificador de edad",
+            "Mensaje cargando...",
+            "Block de notas",
+            "Cambio de color",
+            "Piedra papel o tijeras",
+            "Tabla de datos",
+            "Formulario",
+            "Operacion Multiple",
+            "Calculadora",
+            "Contador",
+            "Contador de palabras",
+            "Cambio de fondo",
+            "Convertidor",
+            "Cronometro",
+            "Galeria",
+            "Temporizador",
+            "mensaje",
+            "Verficador de edad"
+        ];
+
+        // Función para abrir el modal
+        function openModal(projectFile, projectName) {
+            document.getElementById('modal-title').textContent = projectName; // Ajustar título
+            document.getElementById('modal-iframe').src = `proyectos/${projectFile}`;
+            document.getElementById('modal').style.display = "block";
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('modal-iframe').src = ''; // Limpiar iframe al cerrar
+        }
+
+        // Función para el menú responsive
+        function toggleMenu() {
+            var navLinks = document.getElementById('nav-links');
+            if (navLinks.style.display === "block") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "block";
+            }
+        }
+
+        // Generar dinámicamente los proyectos de la galería
+        for (let i = 0; i < projectNames.length; i++) {
+            const gallery = document.querySelector('.gallery');
+            const projectDiv = document.createElement('div');
+            projectDiv.classList.add('project');
+            projectDiv.onclick = () => openModal(`act_${i + 1}.html`, projectNames[i]);
+
+            const img = document.createElement('img');
+            img.src = `images/v${i + 1}.jpg`; // Asumiendo que tienes imágenes v1.jpg, v2.jpg, ..., v18.jpg
+            img.alt = projectNames[i];
+
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            overlay.textContent = projectNames[i];
+
+            projectDiv.appendChild(img);
+            projectDiv.appendChild(overlay);
+            gallery.appendChild(projectDiv);
+        }
+    </script>
+</body>
+</html>

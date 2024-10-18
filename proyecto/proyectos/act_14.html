@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronómetro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #1e1e1e, #333);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .cronometro {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #00FF00; /* Color verde brillante para el texto */
+        }
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #00FF00; /* Color verde brillante para el título */
+        }
+        .tiempo {
+            font-size: 72px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00FF00; /* Color verde brillante para los botones */
+            color: #1e1e1e; /* Color oscuro para el texto del botón */
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #66FF66; /* Color más claro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="cronometro">
+        <h1>Temporizador</h1> <!-- Título agregado -->
+        <div class="tiempo" id="tiempo">00:00:00.00</div> <!-- Cambiado a horas, minutos y milisegundos -->
+        <button class="iniciar" onclick="iniciar()">Iniciar</button>
+        <button class="pausar" onclick="pausar()">Pausar</button>
+        <button class="reiniciar" onclick="reiniciar()">Reiniciar</button>
+    </div>
+
+    <script>
+        let tiempo = 0;
+        let corriendo = false;
+        let intervalo;
+
+        function iniciar() {
+            if (!corriendo) {
+                corriendo = true;
+                intervalo = setInterval(() => {
+                    tiempo++;
+                    actualizarTiempo();
+                }, 10); // Actualiza cada 10 milisegundos
+            }
+        }
+
+        function pausar() {
+            corriendo = false;
+            clearInterval(intervalo);
+        }
+
+        function reiniciar() {
+            corriendo = false;
+            clearInterval(intervalo);
+            tiempo = 0;
+            actualizarTiempo();
+        }
+
+        function actualizarTiempo() {
+            const horas = Math.floor(tiempo / 360000); // Calcula horas
+            const minutos = Math.floor((tiempo % 360000) / 6000); // Calcula minutos
+            const segundos = Math.floor((tiempo % 60000) / 100); // Calcula segundos
+            const milisegundos = tiempo % 100; // Muestra solo los dos últimos dígitos
+            document.getElementById("tiempo").textContent = 
+                `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}.${milisegundos.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>

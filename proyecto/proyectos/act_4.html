@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón de Color Halloween</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            background-color: red;
+            border: 2px solid black;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            transition: background-color 0.5s, transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: black;
+            color: red;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <button onclick="cambiarColor()">Cambiar Color</button>
+
+    <script>
+        function cambiarColor() {
+            const tonosHalloween = ['#FF0000', '#800000', '#550000', '#330000', '#990000']; // Tonos rojos oscuros para el botón
+            const coloresFondo = ['#FF6600', '#006400', '#4B0082', '#8B0000', '#FFD700', '#8A2BE2', '#20B2AA']; // Colores de fondo posibles
+            let colorAleatorio;
+
+            // Seleccionar un color que no esté en la lista de tonos del botón
+            do {
+                colorAleatorio = coloresFondo[Math.floor(Math.random() * coloresFondo.length)];
+            } while (tonosHalloween.includes(colorAleatorio)); // Repite hasta que el color no sea igual a un tono del botón
+
+            document.body.style.backgroundColor = colorAleatorio;
+        }
+    </script>
+</body>
+</html>

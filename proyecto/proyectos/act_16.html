@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador Halloween</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222; /* Fondo oscuro */
+            font-family: 'Arial', sans-serif;
+            color: #ffcc00; /* Color del texto */
+        }
+        #temporizador {
+            text-align: center;
+            border: 5px solid #ffcc00; /* Borde amarillo */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+        }
+        #contador {
+            font-size: 5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+        }
+        #botones button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #6200ea; /* Color del botón */
+            color: white;
+            transition: background-color 0.3s;
+        }
+        #botones button:hover {
+            background-color: #3700b3; /* Color al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div id="temporizador">
+        <h1>Temporizador </h1>
+        <div id="contador">50</div>
+        <div id="botones">
+            <button id="inicio">Iniciar</button>
+            <button id="pausa">Pausar</button>
+            <button id="reinicio">Reiniciar</button>
+        </div>
+    </div>
+    <script>
+        let contador = 50;
+        let intervalo;
+
+        function actualizarContador() {
+            document.getElementById('contador').textContent = contador;
+            contador--;
+
+            if (contador < 0) {
+                clearInterval(intervalo);
+                document.getElementById('contador').textContent = "¡Tiempo terminado!";
+            }
+        }
+
+        document.getElementById('inicio').addEventListener('click', function() {
+            clearInterval(intervalo);
+            intervalo = setInterval(actualizarContador, 1000);
+        });
+
+        document.getElementById('pausa').addEventListener('click', function() {
+            clearInterval(intervalo);
+        });
+
+        document.getElementById('reinicio').addEventListener('click', function() {
+            clearInterval(intervalo);
+            contador = 50;
+            document.getElementById('contador').textContent = contador;
+        });
+    </script>
+</body>
+</html>
